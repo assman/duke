@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.util.Scanner;
 public class Duke {
     private static final String LOGO = " ____        _        \n"
@@ -12,16 +13,16 @@ public class Duke {
 
     public static String getInput() {
         Scanner input = new Scanner(System.in);
-        String inputString = input.nextLine();
-        input.close();
+        String inputString = null;
+        inputString = input.nextLine();
         return inputString;
      }
 
     public static void processUserInput(String userInput) {
         String output = userInput;
-        if(output == "bye") {
+        if(userInput.equals("bye")) {
             respondToUser("Bye. Hope to see you again soon!");
-            return;
+            System.exit(0);
         }
         else {
             respondToUser(output);
