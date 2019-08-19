@@ -1,4 +1,3 @@
-import java.io.Console;
 import java.util.Scanner;
 public class Duke {
     private static final String LOGO = " ____        _        \n"
