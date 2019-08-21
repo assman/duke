@@ -20,13 +20,26 @@ public class Duke {
     }
 
     public void processUserInput(String userInput) {
+        String[] parts = userInput.split(" ", 2);
+        if (parts[0].equals("done")){
+            if(Integer.parseInt(parts[1]) > todoList.size()){
+                respondToUser("Task not found");
+            }
+            else {
+            todoList.get((Integer.parseInt(parts[1]) - 1)).setDone(true);
+            respondToUser("Nice! I've marked this task as done: \n" +
+                          todoList.get((Integer.parseInt(parts[1]) - 1)).getStatusIcon() +
+                          todoList.get((Integer.parseInt(parts[1]) - 1)).getTitle());
+            }
+        }
+        else {
         if (userInput.equals("bye")) {
             respondToUser("Bye. Hope to see you again soon!");
             System.exit(0);
         } else if (userInput.equals("list")) {
             System.out.println("-----------------------");
             for (int i = 0; i < todoList.size(); i++) {
-                System.out.println(i + 1 + ": " + todoList.get(i).title);
+                System.out.println(i + 1 + ": " + "[" + todoList.get(i).getStatusIcon() + "]" + todoList.get(i).getTitle());
             }
             System.out.println("-----------------------\n");
             processUserInput(getInput());
@@ -34,7 +47,8 @@ public class Duke {
             todoList.add(new Todo(userInput));
             String output = userInput;
             respondToUser("added: " + output);
-            processUserInput(getInput());
+        }
+          processUserInput(getInput());
         }
 
     }

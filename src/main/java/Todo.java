@@ -1,7 +1,7 @@
 public class Todo {
-    public String title = null;
-    public String description = null;
-    public boolean done = false;
+    protected String title = null;
+    protected String description = null;
+    protected boolean done = false;
 
     Todo(String todoTitle) {
         title = todoTitle;
@@ -17,6 +17,10 @@ public class Todo {
 
     public boolean getDone(){
         return done;
+    }
+
+    public String getStatusIcon() {
+        return (done ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
     public void setDone(boolean d){
