@@ -39,7 +39,9 @@ public class Duke {
         } else if (userInput.equals("list")) {
             System.out.println("-----------------------");
             for (int i = 0; i < todoList.size(); i++) {
-                System.out.println(i + 1 + ": " + "[" + todoList.get(i).getStatusIcon() + "]" + todoList.get(i).getTitle());
+                System.out.println(i + 1 + ": " + "[" + 
+                                   todoList.get(i).getStatusIcon() +
+                                   "]" + todoList.get(i).getTitle());
             }
             System.out.println("-----------------------\n");
             processUserInput(getInput());
