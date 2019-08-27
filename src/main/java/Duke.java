@@ -23,7 +23,6 @@ public class Duke {
         String[] parts = userInput.split(" ", 2);
         switch(parts[0]) {
             case "done":
-              // code block
               if(Integer.parseInt(parts[1]) > taskList.size()){
                 respondToUser("Task not found");
               }
@@ -46,30 +45,54 @@ public class Duke {
               System.exit(0);
               break;
             case "todo":
-              Todo todo = new Todo(parts[1]);
-              taskList.add(todo);
-              respondToUser("Got it. I've added this task:  \n" +
-                             todo.toString() + "\n" + 
-                             "Now you have " + taskList.size() + " tasks in the list.");
+              try {
+                if(parts[1].isBlank() | parts[1].isEmpty()){
+                  respondToUser("☹ OOPS!!! The description of a todo cannot be empty.");
+                  break;
+                }
+                Todo todo = new Todo(parts[1]);
+                taskList.add(todo);
+                respondToUser("Got it. I've added this task:  \n" +
+                              todo.toString() + "\n" + 
+                              "Now you have " + taskList.size() + " tasks in the list.");
+              } catch (ArrayIndexOutOfBoundsException exception) {
+                respondToUser("☹ OOPS!!! The description of a todo cannot be empty.");
+              }
               break;
             case "deadline":
-              String[] deadline_parts = parts[1].split(" /by ", 2);
-              Deadline deadline = new Deadline(deadline_parts[0], deadline_parts[1]);
-              taskList.add(deadline);
-              respondToUser("Got it. I've added this task:  \n" +
-                             deadline.toString() + "\n" + 
-                             "Now you have " + taskList.size() + " tasks in the list.");
+              try {
+                if(parts[1].isBlank() | parts[1].isEmpty()){
+                  respondToUser("☹ OOPS!!! The description of a deadline cannot be empty.");
+                  break;
+                }
+                String[] deadline_parts = parts[1].split(" /by ", 2);
+                Deadline deadline = new Deadline(deadline_parts[0], deadline_parts[1]);
+                taskList.add(deadline);
+                respondToUser("Got it. I've added this task:  \n" +
+                              deadline.toString() + "\n" + 
+                              "Now you have " + taskList.size() + " tasks in the list.");
+              } catch (ArrayIndexOutOfBoundsException exception) {
+                respondToUser("☹ OOPS!!! The description of a deadline cannot be empty.");
+              }
               break;
             case "event":
-              String[] event_parts = parts[1].split(" /at ", 2);
-              Event event = new Event(event_parts[0], event_parts[1]);
-              taskList.add(event);
-              respondToUser("Got it. I've added this task:  \n" +
-                             event.toString() + "\n" + 
-                             "Now you have " + taskList.size() + " tasks in the list.");
+              try {
+                if(parts[1].isBlank() | parts[1].isEmpty()){
+                  respondToUser("☹ OOPS!!! The description of a event cannot be empty.");
+                  break;
+                }
+                String[] event_parts = parts[1].split(" /at ", 2);
+                Event event = new Event(event_parts[0], event_parts[1]);
+                taskList.add(event);
+                respondToUser("Got it. I've added this task:  \n" +
+                              event.toString() + "\n" + 
+                              "Now you have " + taskList.size() + " tasks in the list.");
+              } catch (ArrayIndexOutOfBoundsException exception) {
+                respondToUser("☹ OOPS!!! The description of a event cannot be empty.");
+              }
               break;
             default:
-              respondToUser("Command not found");
+              respondToUser("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
           }
           processUserInput(getInput());
 
