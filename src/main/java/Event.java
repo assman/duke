@@ -1,9 +1,11 @@
 package main.java;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Event extends Task{
-    protected String at;
+    protected LocalDateTime at;
 
-    Event(String title, String when){
+    Event(String title, LocalDateTime when){
         super(title);
         this.type = "[E]";
         this.at = when;
@@ -11,7 +13,8 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        return super.toString() + " (at: " + at + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return super.toString() + " (at: " + at.format(formatter) + ")";
     }
 
 }

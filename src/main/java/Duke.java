@@ -1,6 +1,8 @@
 package main.java;
 import java.util.*;
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
     private static final String LOGO = " ____        _        \n" + "|  _ \\ _   _| | _____ \n"
@@ -99,7 +101,16 @@ public class Duke {
                   break;
                 }
                 String[] deadline_parts = parts[1].split(" /by ", 2);
-                Deadline deadline = new Deadline(deadline_parts[0], deadline_parts[1]);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime dateTime;
+                try{
+                  dateTime = LocalDateTime.parse(deadline_parts[1], formatter);
+                }
+                catch(Exception e){
+                  respondToUser("Invalid Date/Time");
+                  break;                
+                }
+                Deadline deadline = new Deadline(deadline_parts[0], dateTime);
                 taskList.add(deadline);
                 respondToUser("Got it. I've added this task:  \n" +
                               deadline.toString() + "\n" + 
@@ -115,7 +126,16 @@ public class Duke {
                   break;
                 }
                 String[] event_parts = parts[1].split(" /at ", 2);
-                Event event = new Event(event_parts[0], event_parts[1]);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime dateTime;
+                try{
+                  dateTime = LocalDateTime.parse(event_parts[1], formatter);
+                }
+                catch(Exception e){
+                  respondToUser("Invalid Date/Time");
+                  break;                
+                }
+                Event event = new Event(event_parts[0], dateTime);
                 taskList.add(event);
                 respondToUser("Got it. I've added this task:  \n" +
                               event.toString() + "\n" + 
