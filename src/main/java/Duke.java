@@ -101,13 +101,13 @@ public class Duke {
                   break;
                 }
                 String[] deadline_parts = parts[1].split(" /by ", 2);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
                 LocalDateTime dateTime;
                 try{
                   dateTime = LocalDateTime.parse(deadline_parts[1], formatter);
                 }
                 catch(Exception e){
-                  respondToUser("Invalid Date/Time. Please use the format yyyy-MM-dd HH:mm");
+                  respondToUser("Invalid Date/Time. Please use the format dd-MM-yyyy HH:mm");
                   break;                
                 }
                 Deadline deadline = new Deadline(deadline_parts[0], dateTime);
@@ -126,13 +126,13 @@ public class Duke {
                   break;
                 }
                 String[] event_parts = parts[1].split(" /at ", 2);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
                 LocalDateTime dateTime;
                 try{
                   dateTime = LocalDateTime.parse(event_parts[1], formatter);
                 }
                 catch(Exception e){
-                  respondToUser("Invalid Date/Time. Please use the format yyyy-MM-dd HH:mm");
+                  respondToUser("Invalid Date/Time. Please use the format dd-MM-yyyy HH:mm");
                   break;                
                 }
                 Event event = new Event(event_parts[0], dateTime);
