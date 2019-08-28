@@ -13,27 +13,41 @@ public class Duke {
     public static void main(String[] args) {
         System.out.println("Hello I'm Duke\n" + "What can I do for you?\n" + "____________________________");
         Duke myDuke = new Duke();
-        
-        try{
-          FileInputStream fis = new FileInputStream("tasks.txt");
-          ObjectInputStream ois = new ObjectInputStream(fis);
-          myDuke.taskList = (ArrayList<Task>) ois.readObject();
-          ois.close();
-          }
-          catch(Exception e){
-            try{
-              FileOutputStream fos = new FileOutputStream("tasks.txt");
-              ObjectOutputStream oos = new ObjectOutputStream(fos);
-              oos.writeObject(myDuke.taskList);
-              oos.close();
-              }
-              catch(Exception ee){
-                myDuke.respondToUser("OOPS, unable to write to file");
-              }
-          }
-          myDuke.processUserInput(getInput());
+        myDuke.initialize();
+        myDuke.processUserInput(getInput());
     }
 
+    public void initialize() {
+      try{
+        FileInputStream fis = new FileInputStream("tasks.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        taskList = (ArrayList<Task>) ois.readObject();
+        ois.close();
+        }
+        catch(Exception e){
+          try{
+            FileOutputStream fos = new FileOutputStream("tasks.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(taskList);
+            oos.close();
+            }
+            catch(Exception ee){
+              respondToUser("OOPS, unable to write to file");
+            }
+        }
+    }
+
+    public void save(){
+      try{
+        FileOutputStream fos = new FileOutputStream("tasks.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(this.taskList);
+        oos.close();
+        }
+        catch(Exception e){
+          respondToUser("Error while saving your tasks :(");
+        }
+    }
     public void addTask(Task task) {
       this.taskList.add(task);
     }
@@ -68,15 +82,7 @@ public class Duke {
               break;
             case "bye":
               respondToUser("Bye. Hope to see you again soon!");
-              try{
-                FileOutputStream fos = new FileOutputStream("tasks.txt");
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(taskList);
-                oos.close();
-                }
-                catch(Exception e){
-                  e.printStackTrace();
-                }
+              this.save();
               System.exit(0);
               break;
             case "todo":
@@ -147,16 +153,6 @@ public class Duke {
             default:
               respondToUser("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
           }
-          // try (BufferedWriter bw = new BufferedWriter(new FileWriter("tasks.txt"))) {
-				  //   for (Task t: taskList) {
-				  //       bw.write(t + "\n");
-				  //   }
-
-				  //   bw.close();
-
-          // } catch (IOException e) {
-          //     e.printStackTrace();
-          // }
           
           processUserInput(getInput());
 
