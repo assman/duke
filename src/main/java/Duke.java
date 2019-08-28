@@ -107,7 +107,7 @@ public class Duke {
                   dateTime = LocalDateTime.parse(deadline_parts[1], formatter);
                 }
                 catch(Exception e){
-                  respondToUser("Invalid Date/Time");
+                  respondToUser("Invalid Date/Time. Please use the format yyyy-MM-dd HH:mm");
                   break;                
                 }
                 Deadline deadline = new Deadline(deadline_parts[0], dateTime);
@@ -132,7 +132,7 @@ public class Duke {
                   dateTime = LocalDateTime.parse(event_parts[1], formatter);
                 }
                 catch(Exception e){
-                  respondToUser("Invalid Date/Time");
+                  respondToUser("Invalid Date/Time. Please use the format yyyy-MM-dd HH:mm");
                   break;                
                 }
                 Event event = new Event(event_parts[0], dateTime);
