@@ -1,4 +1,6 @@
+package main.java;
 import java.util.*;
+import java.io.*;
 
 public class Duke {
     private static final String LOGO = " ____        _        \n" + "|  _ \\ _   _| | _____ \n"
@@ -9,15 +11,37 @@ public class Duke {
     public static void main(String[] args) {
         System.out.println("Hello I'm Duke\n" + "What can I do for you?\n" + "____________________________");
         Duke myDuke = new Duke();
-        myDuke.processUserInput(getInput());
+        
+        try{
+          FileInputStream fis = new FileInputStream("tasks.txt");
+          ObjectInputStream ois = new ObjectInputStream(fis);
+          myDuke.taskList = (ArrayList<Task>) ois.readObject();
+          ois.close();
+          }
+          catch(Exception e){
+            try{
+              FileOutputStream fos = new FileOutputStream("tasks.txt");
+              ObjectOutputStream oos = new ObjectOutputStream(fos);
+              oos.writeObject(myDuke.taskList);
+              oos.close();
+              }
+              catch(Exception ee){
+                myDuke.respondToUser("OOPS, unable to write to file");
+              }
+          }
+          myDuke.processUserInput(getInput());
+    }
+
+    public void addTask(Task task) {
+      this.taskList.add(task);
     }
 
     public static String getInput() {
-        Scanner input = new Scanner(System.in);
-        String inputString = null;
-        inputString = input.nextLine();
-        return inputString;
-    }
+      Scanner input = new Scanner(System.in);
+      String inputString = null;
+      inputString = input.nextLine();
+      return inputString;
+  }
 
     public void processUserInput(String userInput) {
         String[] parts = userInput.split(" ", 2);
@@ -42,6 +66,15 @@ public class Duke {
               break;
             case "bye":
               respondToUser("Bye. Hope to see you again soon!");
+              try{
+                FileOutputStream fos = new FileOutputStream("tasks.txt");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(taskList);
+                oos.close();
+                }
+                catch(Exception e){
+                  e.printStackTrace();
+                }
               System.exit(0);
               break;
             case "todo":
@@ -94,6 +127,17 @@ public class Duke {
             default:
               respondToUser("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
           }
+          // try (BufferedWriter bw = new BufferedWriter(new FileWriter("tasks.txt"))) {
+				  //   for (Task t: taskList) {
+				  //       bw.write(t + "\n");
+				  //   }
+
+				  //   bw.close();
+
+          // } catch (IOException e) {
+          //     e.printStackTrace();
+          // }
+          
           processUserInput(getInput());
 
     }

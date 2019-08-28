@@ -1,4 +1,7 @@
-public class Task {
+package main.java;
+import java.io.*;
+
+public class Task implements Serializable {
     protected String title = null;
     protected String description = null;
     protected boolean done = false;

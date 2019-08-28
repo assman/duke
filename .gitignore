@@ -15,3 +15,4 @@ bin/
 
 src/main/java/*.class
 .vscode
+*.txt
