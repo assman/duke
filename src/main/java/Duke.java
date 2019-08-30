@@ -78,7 +78,6 @@ public class Duke {
                   System.out.println(i + 1 + ": " + taskList.get(i).toString());
               }
               System.out.println("-----------------------\n");
-              processUserInput(getInput());
               break;
             case "bye":
               respondToUser("Bye. Hope to see you again soon!");
