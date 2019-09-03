@@ -68,7 +68,7 @@ public class Duke {
               }
               else {
                taskList.get((Integer.parseInt(parts[1]) - 1)).setDone(true);
-              respondToUser("Nice! I've marked this task as done: \n" +
+               respondToUser("Nice! I've marked this task as done: \n" +
                             taskList.get((Integer.parseInt(parts[1]) - 1)).toString());
               }
               break;
@@ -78,6 +78,18 @@ public class Duke {
                   System.out.println(i + 1 + ": " + taskList.get(i).toString());
               }
               System.out.println("-----------------------\n");
+              break;
+            case "delete":
+              if(Integer.parseInt(parts[1]) > taskList.size()){
+                respondToUser("Task not found");
+              }
+              else {
+                Task deletedTask = taskList.get(Integer.parseInt(parts[1]) - 1);
+                taskList.remove(Integer.parseInt(parts[1]) - 1);
+                respondToUser("Noted. I've removed this task: \n" +
+                              deletedTask.toString() + "\n" +
+                              "Now you have " + taskList.size() + " tasks in the list.");
+              }
               break;
             case "bye":
               respondToUser("Bye. Hope to see you again soon!");
