@@ -96,6 +96,25 @@ public class Duke {
               this.save();
               System.exit(0);
               break;
+            case "find":
+              String searchQuery = parts[1];
+              ArrayList<Task> searchResult = new ArrayList<Task>();
+              for (Task task : taskList) {
+                  if(task.toString().contains(searchQuery)){
+                      searchResult.add(task);
+                  }
+              }
+              if(searchResult.size() > 0){
+                System.out.println("-----------------------\nHere are the matching tasks in your list:");
+                for (int i = 0; i < searchResult.size(); i++) {
+                    System.out.println(i + 1 + ": " + searchResult.get(i).toString());
+                }
+                System.out.println("-----------------------\n");
+              }
+              else {
+                respondToUser("Sorry, no such tasks found :(");
+              }
+              break;
             case "todo":
               try {
                 if(parts[1].isBlank() | parts[1].isEmpty()){
