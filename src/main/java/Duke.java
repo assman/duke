@@ -3,6 +3,12 @@ import java.util.*;
 
 import java.io.*;
 
+/**
+ * The Duke program implements an application that serves as a command line personal assistant
+ * 
+ * @author Varun Parmar
+ */
+
 public class Duke {
     private static final String LOGO = " ____        _        \n" + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n" + "| |_| | |_| |   <  __/\n" + "|____/ \\__,_|_|\\_\\___|\n";

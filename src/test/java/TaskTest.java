@@ -3,10 +3,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * This class implements the unit testing code for the Duke class
+ * This class implements the unit testing code for the Task class
  * @author Varun Parmar
  */
-public class DukeTest {
+public class TaskTest {
     @Test
     public void dummyTest(){
         assertEquals(2, 2);

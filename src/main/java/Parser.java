@@ -5,7 +5,19 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * The Parser class implements the logic to be executed upon user input.
+ * 
+ * @author Varun Parmar
+ */
 public class Parser {
+
+    /**
+     * This method takes in the users string based input and parses it into a sensible command.
+     * @param userInput This is the first parameter to the method which represents the users input in String format.
+     * @param taskList This is the second parameter to the method which is the TaskList of the current user.
+     * @param storage This is the third parameter to the method which is used to save the users todos in a persistant file
+     */
     public void processUserInput(String userInput, TaskList taskList, Storage storage) {
         String[] parts = userInput.split(" ", 2);
         switch(parts[0]) {
