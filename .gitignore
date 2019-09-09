@@ -11,3 +11,12 @@ src/main/resources/docs/
 # MacOS custom attributes files created by Finder
 .DS_Store
 *.iml
+bin/
+
+src/main/java/*.class
+.vscode
+tasks.txt
+input.txt
+.project
+.settings/
+.classpath
