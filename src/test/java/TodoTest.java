@@ -10,6 +10,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TodoTest {
     Todo todo = new Todo("test todo");
 
-    
+    @Test
+    public void testTodoCreation() {
+        String title = todo.getTitle();
+        assertEquals(title, "test todo");
+    }
+
+    @Test
+    public void testTaskType() {
+        assertEquals(todo.getTaskType(), "[T]");
+    }
 
 }
