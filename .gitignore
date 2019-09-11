@@ -17,3 +17,6 @@ src/main/java/*.class
 .vscode
 tasks.txt
 input.txt
+.project
+.settings/
+.classpath
